@@ -25,3 +25,31 @@ def update_student():
 @app.delete("/students")
 def delete_student():
     return {"message": "Student Deleted"}
+
+students = {
+    1: "Ashwini",
+    2: "Rahul",
+    3: "Priya"
+}
+
+
+#path parameter
+@app.get("/students/{student_id}")
+def get_student(student_id: int):
+    return {
+        "id": student_id,
+        "name": students.get(student_id, "Student Not Found")
+    }
+
+# Query Parameters
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/students")
+def get_student(name: str, age: int):
+    return {
+        "name": name,
+        "age": age
+    }
